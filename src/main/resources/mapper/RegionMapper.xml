@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ethen.core.mapper.RegionMapper">
+    <select id="listProvince" resultType="com.ethen.core.domain.Province">
+        SELECT
+            id            "id",
+            province_name "provinceName",
+            province_id   "provinceId"
+        FROM provinces
+    </select>
+
+    <select id="listCityByProvinceId" resultType="com.ethen.core.domain.City">
+        SELECT
+            id        "id",
+            city_id   "cityId",
+            city_name "cityName"
+        FROM cities
+        WHERE province_id = #{arg0}
+    </select>
+
+    <select id="listAreaByCityId" resultType="com.ethen.core.domain.Area">
+        SELECT
+            id        "id",
+            area_id   "areaId",
+            area_name "areaName"
+        FROM areas
+        WHERE city_id = #{arg0}
+    </select>
+</mapper>
